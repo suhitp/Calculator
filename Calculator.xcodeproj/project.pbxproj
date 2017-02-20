@@ -14,6 +14,7 @@
 		D8BFD7721E58634700972309 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8BFD7701E58634700972309 /* LaunchScreen.storyboard */; };
 		D8BFD77D1E58634700972309 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFD77C1E58634700972309 /* CalculatorTests.swift */; };
 		D8BFD7881E58634700972309 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFD7871E58634700972309 /* CalculatorUITests.swift */; };
+		D8BFD7961E589CB300972309 /* CalculatorDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFD7951E589CB300972309 /* CalculatorDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D8BFD7831E58634700972309 /* CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BFD7871E58634700972309 /* CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUITests.swift; sourceTree = "<group>"; };
 		D8BFD7891E58634700972309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8BFD7951E589CB300972309 /* CalculatorDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				D8BFD7671E58634700972309 /* AppDelegate.swift */,
 				D8BFD7691E58634700972309 /* ViewController.swift */,
+				D8BFD7951E589CB300972309 /* CalculatorDataModel.swift */,
 				D8BFD76B1E58634700972309 /* Main.storyboard */,
 				D8BFD76E1E58634700972309 /* Assets.xcassets */,
 				D8BFD7701E58634700972309 /* LaunchScreen.storyboard */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8BFD76A1E58634700972309 /* ViewController.swift in Sources */,
+				D8BFD7961E589CB300972309 /* CalculatorDataModel.swift in Sources */,
 				D8BFD7681E58634700972309 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 73WTWQ22L2;
 				INFOPLIST_FILE = Calculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.suhit.iOS.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,6 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 73WTWQ22L2;
 				INFOPLIST_FILE = Calculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.suhit.iOS.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
