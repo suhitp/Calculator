@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
     
     var displayValue: Double {
+        
         get {
             if let value = display.text, let num =  Double(value) {
                 return num
@@ -59,6 +60,12 @@ class ViewController: UIViewController {
         if let result = calculatorModel.result {
             displayValue = result
         }
+    }
+    
+    @IBAction private func clearText(sender: UIButton) {
+    }
+    
+    @IBAction private func reset(sender: UIButton) {
     }
     
 }

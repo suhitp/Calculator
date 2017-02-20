@@ -10,9 +10,10 @@ import UIKit
 
 struct CalculatorViewModel {
 
-    private var accumulator: Double = 0
+    private var accumulator: Double?
     
-    var result: Double? { get {
+    var result: Double? {
+        get {
             return accumulator
         }
     }
@@ -39,11 +40,13 @@ struct CalculatorViewModel {
         
         if let operation = operations[symbol] {
             switch operation {
-            case .constant(let assciatedConstantValue):
-                accumulator = assciatedConstantValue
+            case .constant(let constant):
+                accumulator = constant
             case .arithmaticOperation(let function):
                 executePendingBinaryOperation()
-                pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+                if accumulator != nil {
+                    pending = PendingArithmaticOperationInfo(binaryFunction: function, firstOperand: accumulator!)
+                }
             case .Equals:
                 executePendingBinaryOperation()
             default:
@@ -54,19 +57,19 @@ struct CalculatorViewModel {
     
     private mutating func executePendingBinaryOperation()
     {
-        if pending != nil {
-            accumulator = pending!.binaryFunction(pending!.firstOperand,accumulator)
+        if pending != nil && accumulator != nil {
+            accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator!)
             pending = nil
         }
     }
     
-    private var pending: PendingBinaryOperationInfo?
+    private var pending: PendingArithmaticOperationInfo?
     
-    private struct PendingBinaryOperationInfo {
+    private struct PendingArithmaticOperationInfo {
         var binaryFunction: (Double, Double) -> Double
         var firstOperand: Double
-        
     }
+    
     
     mutating func setOperand(_ operand: Double) {
         accumulator = operand
