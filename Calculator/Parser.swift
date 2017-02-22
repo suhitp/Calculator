@@ -196,7 +196,7 @@ struct Parser {
             print(r ?? "")
             
         case "%":
-            result = num1.truncatingRemainder(dividingBy: num2)
+            result = num2.truncatingRemainder(dividingBy: num1)
             
         case "^":
             result = pow(num2, num1)
