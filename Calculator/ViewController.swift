@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
+    var parser = Parser()
     
     var displayValue: Double {
         
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
     
     @IBAction private func performOperation(_ sender: UIButton) {
         
-        if isTyping {
+        /*if isTyping {
             calculatorModel.setOperand(displayValue)
             isTyping = false
         }
@@ -59,13 +60,23 @@ class ViewController: UIViewController {
         
         if let result = calculatorModel.result {
             displayValue = result
-        }
+        }*/
     }
     
     @IBAction private func clearText(sender: UIButton) {
     }
     
     @IBAction private func reset(sender: UIButton) {
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let res = parser.evaluate("-5+4+2*3^3")
+        print("result = \(res)")
     }
     
 }
