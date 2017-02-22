@@ -103,12 +103,12 @@
 			children = (
 				D8BFD7671E58634700972309 /* AppDelegate.swift */,
 				D8BFD7691E58634700972309 /* ViewController.swift */,
+				D809AD601E5D84DC00DBF14B /* Parser.swift */,
 				D8BFD7951E589CB300972309 /* CalculatorDataModel.swift */,
 				D8BFD76B1E58634700972309 /* Main.storyboard */,
 				D8BFD76E1E58634700972309 /* Assets.xcassets */,
 				D8BFD7701E58634700972309 /* LaunchScreen.storyboard */,
 				D8BFD7731E58634700972309 /* Info.plist */,
-				D809AD601E5D84DC00DBF14B /* Parser.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";

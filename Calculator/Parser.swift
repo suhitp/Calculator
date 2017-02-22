@@ -17,9 +17,14 @@ extension String {
     }
     
     var isNumber : Bool {
+//        get {
+//            return !self.isEmpty && ("1234567890" as NSString).contains(self)
+//        }
+        
         get {
-            return !self.isEmpty && ("0123456789." as NSString).contains(self)
+            return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
         }
+
     }
     
     var precedence: Int {
@@ -44,41 +49,6 @@ extension String {
     }
     
 }
-
-/*struct Stack<String> {
-    
-    private var array: [String] = []
-    
-    mutating func push(_ element: String) {
-        array.append(element)
-    }
-    
-    mutating func peek() -> String {
-        if !array.isEmpty {
-            return array[array.count-1]
-        } else {
-            return "" as! String
-        }
-    }
-    
-    var isEmpty: Bool {
-        return array.isEmpty
-    }
-    
-    var count: Int {
-        return array.count
-    }
-    
-    mutating func pop() -> String {
-        var temp: String = "" as! String
-        if !array.isEmpty {
-            temp = array[array.count - 1]
-            array.remove(at: array.count - 1)
-        }
-        return temp
-    }
-}*/
-
 
 
 struct Stack<String> {
@@ -107,23 +77,48 @@ struct Stack<String> {
 }
 
 
-
 struct Parser {
     
     var operatorStack = Stack<String>()
     var operandStack = Stack<String>()
     
-    mutating func evaluate(_ expression: String) -> String? {
+    
+    mutating func createArray(from input: String) -> [String] {
         
-        for (_, char) in expression.characters.enumerated() {
+        var num = ""
+        var result: [String] = []
+        
+        for char in input.characters {
             
-            let token = String(char)
+            let s = String(char)
             
-            if token.isNumber {
-                print(token)
-                operandStack.push(token)
+            if s.isNumber || s == "." {
+                num.append(s)
             }
             
+            if s.isOperator {
+                result.append(num)
+                result.append(s)
+                num = ""
+            }
+        }
+        
+        if num != "" {
+            result.append(num)
+        }
+        
+        return result
+    }
+    
+    mutating func evaluate(expression: String) -> String? {
+        
+        let characters = createArray(from: expression)
+        
+        for token in characters {
+            
+            if token.isNumber || token.contains(".") {
+                operandStack.push(token)
+            }
             
             if token.isOperator {
                 

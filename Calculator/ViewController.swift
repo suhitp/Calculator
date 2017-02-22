@@ -12,19 +12,19 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     var parser = Parser()
+    var previous: String?
     
-    var displayValue: Double {
-        
+    var displayValue: String {
         get {
-            if let value = display.text, let num =  Double(value) {
-                return num
+            if let value = display.text {
+                return value
             } else {
-                return 0
+                return "0"
             }
         }
         
         set {
-            display.text = String(newValue)
+            display.text = newValue
         }
     }
     
@@ -36,10 +36,22 @@ class ViewController: UIViewController {
             return
         }
         
+        if previous != nil {
+            displayValue = previous!
+            displayValue.append(digit)
+            previous = nil
+            isTyping = true
+            return
+        }
+        
         if isTyping {
             display.text?.append(digit)
         } else {
-            display.text = digit
+            if digit == "." {
+                display.text = displayValue.appending(digit)
+            } else {
+                display.text = digit
+            }
         }
         
         isTyping = true
@@ -49,34 +61,45 @@ class ViewController: UIViewController {
     
     @IBAction private func performOperation(_ sender: UIButton) {
         
-        /*if isTyping {
-            calculatorModel.setOperand(displayValue)
-            isTyping = false
+        if isTyping {
+            if let result = parser.evaluate(expression: displayValue) {
+                displayValue = result.replacingOccurrences(of: ".0", with: "")
+                previous = displayValue
+                isTyping = false
+            }
         }
-        
-        if let operation = sender.currentTitle {
-           calculatorModel.performOperation(operation)
-        }
-        
-        if let result = calculatorModel.result {
-            displayValue = result
-        }*/
     }
     
     @IBAction private func clearText(sender: UIButton) {
+        
+        if let char = display.text {
+            if char.characters.count > 1 {
+                let text = char
+                let truncated = text.substring(to: text.index(before: text.endIndex))
+                displayValue = truncated
+                previous = truncated
+            } else {
+                 displayValue = "0"
+            }
+        } else {
+            displayValue = "0"
+        }
+        isTyping = false
     }
     
     @IBAction private func reset(sender: UIButton) {
+        displayValue = "0"
+        previous = nil
+        isTyping = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        display.text = "0"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let res = parser.evaluate("-5+4+2*3^3")
-        print("result = \(res)")
     }
     
 }
